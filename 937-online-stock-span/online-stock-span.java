@@ -1,17 +1,22 @@
+import java.util.ArrayList;
 class StockSpanner { 
-    Stack<int[]>empty=new Stack<>(); 
+    ArrayList<Integer>empty=new ArrayList<>();
     public StockSpanner() { 
     }  
     public int next(int price){  
+        empty.add(price);
         int span=1; 
-        while(!empty.isEmpty() && empty.peek()[0]<=price){ 
-            span+=empty.pop()[1]; 
+        for(int i=empty.size()-2;i>=0;i--){ 
+            if(empty.get(i)<=price){ 
+                span++;
+            }
+            else{ 
+                break;
+            }
         } 
-        empty.push(new int[]{price,span}); 
-        return span;
+        return span; 
     }
 }
-
 /**
  * Your StockSpanner object will be instantiated and called as such:
  * StockSpanner obj = new StockSpanner();
