@@ -7,7 +7,7 @@ class Solution {
                 oneven=true;
             } 
             else{ 
-                onodd=false;
+                onodd=true;
             }
         }
         if(!oneven || !onodd){ 
