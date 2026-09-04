@@ -17,7 +17,7 @@ class Solution {
                 int right=i-index ;
                 maxsum+=(long) nums[index]*left*right;
             }
-            if(i<n) empty.push(i);
+            empty.push(i);
         }
         empty.clear();
         for(int i=0;i<=n;i++){ 
@@ -33,7 +33,7 @@ class Solution {
                 int right=i-index;
                 minsum+=(long) nums[index]*left*right;
             }
-            if(i<n) empty.add(i);
+            empty.add(i);
         } 
         return (long) maxsum-minsum;
     }
