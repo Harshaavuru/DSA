@@ -5,9 +5,7 @@ class Solution {
     };
     public List<String> letterCombinations(String digits) {
         List<String>empty=new ArrayList<>() ; 
-        if(digits.length()==0){ 
-            return empty ;
-        }
+        
         solve(digits,0,"",empty) ;
         return empty ; 
     }
