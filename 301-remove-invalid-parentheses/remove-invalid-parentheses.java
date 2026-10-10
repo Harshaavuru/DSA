@@ -17,9 +17,7 @@ class Solution {
                 else if(!found){ 
                     for(int j=0;j<curr.length();j++){ 
                         char c=curr.charAt(j); 
-                        if(c=='(' && c==')'){ 
-                            continue;
-                        }
+                        
                         String next=curr.substring(0,j)+curr.substring(j+1); 
                         if(visited.add(next)){ 
                             q.offer(next);
