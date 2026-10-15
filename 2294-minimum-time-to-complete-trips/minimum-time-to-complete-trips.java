@@ -1,7 +1,7 @@
 class Solution {
     public long minimumTime(int[] time, int totalTrips) {
         long left=1; 
-        long mintime=Integer.MAX_VALUE ;
+        long mintime=10000007 ;
         for(int x:time){ 
             mintime=Math.min(mintime,x) ;
         } 
@@ -12,9 +12,7 @@ class Solution {
             long trips=0 ;
             for(int x:time){
                 trips+=mid/x ;
-                if(trips>=totalTrips){ 
-                    break ;
-                }
+                
             }
             if(trips>=totalTrips){ 
                 ans=mid ;
