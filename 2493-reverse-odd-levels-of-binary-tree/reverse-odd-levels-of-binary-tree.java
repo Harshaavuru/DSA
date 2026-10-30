@@ -18,35 +18,20 @@ class Solution {
         if(root==null){
             return null ;
         }
-        Queue<TreeNode>queue=new LinkedList<>() ;
-        queue.offer(root);
-        int level=0 ;
-        while(!queue.isEmpty()){ 
-            int size=queue.size() ;
-            List<TreeNode>list=new ArrayList<>() ;
-            for(int i=0;i<size;i++){
-                TreeNode node=queue.poll() ;
-                list.add(node) ;
-                if(node.left!=null){
-                    queue.offer(node.left) ;
-                } 
-                if(node.right!=null){
-                    queue.offer(node.right) ;
-                }
-            }
-            if(level%2==1){
-                int left=0 ;
-                int right=list.size()-1 ;
-                while(left<right){
-                    int temp=list.get(left).val ;
-                    list.get(left).val=list.get(right).val ;
-                    list.get(right).val=temp ;
-                    left++ ;
-                    right-- ;
-                }
-            }
-            level++ ;
-        }
+        oddlevel(root.left,root.right,1) ;
         return root ;
     }
+    private void oddlevel(TreeNode left,TreeNode right,int level){
+        if(left==null || right==null){
+            return ;
+        }
+        if(level%2==1){
+            int temp=left.val ;
+            left.val=right.val ;
+            right.val=temp ;
+        } 
+        oddlevel(left.left,right.right,level+1) ;
+        oddlevel(left.right,right.left,level+1) ;
+    }
+    
 }
