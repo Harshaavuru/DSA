@@ -13,35 +13,23 @@
  *     }
  * }
  */
-class Solution {
+class Solution { 
+    int maxwid=0 ;
+    List<Long>firstIndex=new ArrayList<>() ;
     public int widthOfBinaryTree(TreeNode root) {
-        Queue<Pair<TreeNode,Long>>q=new LinkedList<>(); 
-        q.add(new Pair<>(root,0L));
-        int maxwidth=0;
-        while(!q.isEmpty()){
-            int size=q.size();
-            long minindex=q.peek().getValue();
-            long first=0;
-            long last=0;
-            for(int i=0;i<size;i++){
-                Pair<TreeNode,Long>p=q.poll();
-                TreeNode node=p.getKey();
-                long index=p.getValue()-minindex ;
-                if(i==0){
-                    first=index;
-                }
-                if(i==size-1){
-                    last=index;
-                }
-                if(node.left!=null){
-                    q.add(new Pair<>(node.left,2*index+1)) ;
-                }
-                if(node.right!=null){
-                    q.add(new Pair<>(node.right,2*index+2)) ;
-                }
-            }
-            maxwidth=Math.max(maxwidth,(int)(last-first+1));
+        dfs(root,0,0) ;
+        return maxwid ;
+    }
+    void dfs(TreeNode node,int level,long index){
+        if(node==null){
+            return ;
         }
-        return maxwidth ;
+        if(level==firstIndex.size()){
+            firstIndex.add(index) ;
+        }
+        long width=index-firstIndex.get(level) + 1 ;
+        maxwid=Math.max(maxwid,(int)(width)) ;
+        dfs(node.left,level+1,2*index+1) ;
+        dfs(node.right,level+1,2*index+2) ;
     }
 }
